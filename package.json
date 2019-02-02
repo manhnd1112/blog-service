@@ -1,0 +1,49 @@
+{
+  "name": "blog-service",
+  "version": "0.0.0",
+  "description": "Blog service for isling.me blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles --forceExit --setupFiles dotenv/config",
+    "start": "node -r dotenv/config index.js dotenv_config_path=.env",
+    "dev": "nodemon --exec 'node -r dotenv/config index.js dotenv_config_path=.env' --watch"
+  },
+  "author": "Long Nguyen-Phuc (reallongnguyen@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "awilix": "^4.1.0",
+    "bcrypt": "^3.0.3",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "http-status": "^1.3.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "moment-timezone": "^0.5.23",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.13",
+    "morgan": "^1.9.1",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.6",
+    "superagent": "^4.1.0",
+    "supertest": "^3.4.1"
+  },
+  "repository": "https://github.com/reallongnguyen/blog-service.git",
+  "husky": {
+    "hooks": {
+      "pre-commit": "bash .pre-commit.sh"
+    }
+  }
+}

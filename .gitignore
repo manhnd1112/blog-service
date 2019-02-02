@@ -1,0 +1,15 @@
+# ignore node modules
+node_modules
+
+npm-debug.log
+
+# ignore idea folder
+.idea
+
+# ignore log
+log-files/*
+
+# ignore config
+.env
+config/Setting.production.js
+config/Setting.development.js

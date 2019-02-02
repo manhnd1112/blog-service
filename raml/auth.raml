@@ -1,0 +1,103 @@
+#%RAML 1.0
+title: authentication
+version: v1
+baseUri: /api/{version}/
+
+types:
+  AuthSchema:
+    properties:
+      email:
+        required: true
+        type: string
+      password:
+        required: true
+        type: string
+    example:
+      email: "reallongnguyen@gmail.com"
+      password: "invisible"
+
+  AccountSchema:
+    properties:
+      email:
+        required: true
+        type: string
+      passwordHash:
+        required: true
+        type: string
+      name:
+        required: true
+        type: string
+      avatar:
+        type: string
+      isAdmin:
+        required: true
+        type: boolean
+    example:
+      email: "reallongnguyen@gmail.com"
+      passwordHash: "youcan'tunderstandpasswordhash"
+      name: Long Nguyen
+      avatar: "/images/avatar/00001.jpg"
+      isAdmin: True
+
+/auth:
+  post:
+    body:
+      application/json:
+        type: AuthSchema
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "id": "ObjectId",
+                "name": "Long Nguyen",
+                "isAdmin": "True",
+                "avatar": "/images/avatar/00001.jpg",
+              }
+      401:
+        body:
+          application/json:
+            example: |
+              {
+                "error": {
+                  "code": 401,
+                  "message": "AUTHENTICATION_FAILED",
+                  errors: [
+                    {
+                      "resource": "ACCOUNT",
+                      "field": "EMAIL_OR_PASSWORD",
+                      "code": "INVALID",
+                    },
+                  ]
+                }
+              }
+
+/account:
+  /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "id": "ObjectId",
+                  "name": "Long Nguyen",
+                  "avatar": "/images/avatar/00001.jpg",
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": {
+                    "code": 404,
+                    "message": "RESOURCE_DOSE_NOT_EXIST",
+                    errors: [
+                      {
+                        "resource": "ACCOUNT",
+                      },
+                    ]
+                  }
+                }

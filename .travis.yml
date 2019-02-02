@@ -1,0 +1,20 @@
+language: node_js
+
+node_js:
+  - '10'
+
+services:
+  - mongodb
+
+before_install:
+  - sudo apt-get install -y build-essential python
+
+install: npm install
+
+cache:
+  directories:
+    - '.eslintcache'
+    - 'node_modules'
+
+script:
+  - npm test
